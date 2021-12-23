@@ -174,6 +174,7 @@ mod bit_mask;
 mod blacklisted_name;
 mod blocks_in_if_conditions;
 mod bool_assert_comparison;
+mod bool_to_int_with_if;
 mod booleans;
 mod bytecount;
 mod cargo_common_metadata;
@@ -854,6 +855,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
     store.register_early_pass(|| Box::new(octal_escapes::OctalEscapes));
     store.register_late_pass(|| Box::new(needless_late_init::NeedlessLateInit));
     store.register_late_pass(|| Box::new(return_self_not_must_use::ReturnSelfNotMustUse));
+    store.register_early_pass(|| Box::new(bool_to_int_with_if::BoolToIntWithIf));
     // add lints here, do not remove this comment, it's used in `new_lint`
 }
 
